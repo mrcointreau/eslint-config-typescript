@@ -10,9 +10,6 @@ module.exports = {
     '@typescript-eslint'
   ],
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: ['**/tsconfig.json']
-  },
   settings: {
     'import/resolver': {
       node: { extensions: ['.js', '.mjs'] },
