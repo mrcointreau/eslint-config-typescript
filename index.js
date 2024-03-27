@@ -63,6 +63,9 @@ module.exports = {
 
     'no-var': 'error',
 
+    // Force consistent spacing inside braces
+    'object-curly-spacing': ['error', 'always'],
+
     // Force object shorthand where possible
     'object-shorthand': 'error',
 
