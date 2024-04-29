@@ -1,6 +1,6 @@
 {
   "name": "@mrcointreau/eslint-config-typescript",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A custom ESLint configuration for TypeScript projects",
   "keywords": [
     "eslint",
@@ -10,20 +10,21 @@
   "license": "MIT",
   "author": "mrcointreau",
   "files": [
-    "index.js"
+    "index.cjs"
   ],
-  "main": "index.js",
+  "main": "index.cjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/mrcointreau/eslint-config-typescript"
   },
   "dependencies": {
+    "@stylistic/eslint-plugin": "^1.7.2",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-unicorn": "^50.0.1"
+    "eslint-plugin-unicorn": "^52.0.0"
   },
   "peerDependencies": {
     "eslint": "^8.56.0"
