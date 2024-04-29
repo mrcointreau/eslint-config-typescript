@@ -17,30 +17,47 @@ module.exports = {
     },
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx']
-    }
+    },
   },
   rules: {
-    // Enforce import order
-    'import/order': ['error', { 'newlines-between': 'always', alphabetize: { order: 'asc', orderImportKind: 'asc' } }],
+    // Allow paren-less arrow functions only when there's no braces
+    'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
+
+    // Force curly braces for control flow, including if blocks with a single statement
+    'curly': ['error', 'all'],
+
+    // Allow debugger during development
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+
+    // No console statements unless debugging
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+
+    // Force dot notation when possible
+    'dot-notation': 'error',
 
     // Imports should come first
     'import/first': 'error',
 
-    // Other import rules
-    'import/no-mutable-exports': 'error',
-
     // Allow unresolved imports
     'import/no-unresolved': 'off',
 
-    // Allow paren-less arrow functions only when there's no braces
-    'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
+    // Other import rules
+    'import/no-mutable-exports': 'error',
+
+    // Enforce import order
+    'import/order': ['error', { 'newlines-between': 'always', alphabetize: { order: 'asc', orderImportKind: 'asc' } }],
+
+    // No single if in an 'else' block
+    'no-lonely-if': 'error',
 
     // Allow async-await
     'generator-star-spacing': 'off',
 
-    // Allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+    // No variables declared with var
+    'no-var': 'error',
+
+    // No useless destructuring/importing/exporting renames
+    'no-useless-rename': 'error',
 
     // Prefer const over let
     'prefer-const': ['error', {
@@ -48,36 +65,17 @@ module.exports = {
       ignoreReadBeforeAssign: false
     }],
 
-    // No single if in an 'else' block
-    'no-lonely-if': 'error',
-
-    // Force curly braces for control flow,
-    // including if blocks with a single statement
-    curly: ['error', 'all'],
-
     // No async function without await
     'require-await': 'error',
-
-    // Force dot notation when possible
-    'dot-notation': 'error',
-
-    'no-var': 'error',
-
-    // Force object shorthand where possible
-    'object-shorthand': 'error',
-
-    // No useless destructuring/importing/exporting renames
-    'no-useless-rename': 'error',
 
     /**********************/
     /*   Unicorn Rules    */
     /**********************/
+    // Uppercase regex escapes
+    'unicorn/escape-case': 'error',
 
     // Pass error message when throwing errors
     'unicorn/error-message': 'error',
-
-    // Uppercase regex escapes
-    'unicorn/escape-case': 'error',
 
     // Array.isArray instead of instanceof
     'unicorn/no-instanceof-array': 'error',
@@ -88,14 +86,14 @@ module.exports = {
     // Lowercase number formatting for octal, hex, binary (0x12 instead of 0X12)
     'unicorn/number-literal-case': 'error',
 
+    // textContent instead of innerText
+    'unicorn/prefer-dom-node-text-content': 'error',
+
     // includes over indexOf when checking for existence
     'unicorn/prefer-includes': 'error',
 
     // String methods startsWith/endsWith instead of more complicated stuff
     'unicorn/prefer-string-starts-ends-with': 'error',
-
-    // textContent instead of innerText
-    'unicorn/prefer-dom-node-text-content': 'error',
 
     // Enforce throwing type error when throwing error while checking typeof
     'unicorn/prefer-type-error': 'error',
@@ -106,21 +104,51 @@ module.exports = {
     /**********************/
     /*  TypeScript Rules  */
     /**********************/
-
+    // Consistent type exports
     '@typescript-eslint/consistent-type-exports': 'error',
+
+    // Consistent type imports
     '@typescript-eslint/consistent-type-imports': 'error',
+
+    // Indentation rule
     '@typescript-eslint/indent': ['error', 2],
+
+    // Allow use of 'any' type
     '@typescript-eslint/no-explicit-any': 'off',
+
+    // No side effects in type imports
     '@typescript-eslint/no-import-type-side-effects': 'error',
+
+    // Unused variables rule
     '@typescript-eslint/no-unused-vars': ['error', { args: 'all', argsIgnorePattern: '^_' }],
+
+    // Object curly spacing rule
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
-    '@typescript-eslint/type-annotation-spacing': ['error', { before: false, after: true, overrides: { arrow: { before: true, after: true } } }],
-    // Per the docs, the root no-unused-vars should be disabled:
-    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
+
+    // Type annotation spacing rule
+    '@typescript-eslint/type-annotation-spacing': ['error', {
+      before: false,
+      after: true,
+      overrides: {
+        arrow: {
+          before: true,
+          after: true
+        },
+        generic: {
+          before: true,
+          after: true
+        }
+      }
+    }],
+
+    // Disable the base rule as it can report incorrect errors
     'no-unused-vars': 'off',
 
-    // https://github.com/typescript-eslint/typescript-eslint/blob/1cf9243/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
-    'no-undef': 'off'
+    // Disable no-undef for TypeScript files as it can interfere with TypeScript's own handling of definitions
+    'no-undef': 'off',
+
+    // Disable the base rule as it can report incorrect errors
+    'indent': 'off'
   },
   reportUnusedDisableDirectives: true
 }
