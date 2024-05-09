@@ -3,7 +3,7 @@ module.exports = {
     'standard',
     'plugin:import/recommended',
     'plugin:unicorn/recommended',
-    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:@stylistic/disable-legacy',
     'plugin:@stylistic/recommended-extends',
   ],
@@ -35,6 +35,9 @@ module.exports = {
     // Allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
 
+    // Allows using the void operator when needed
+    'no-void': 'off',
+
     // No async function without await
     'require-await': 'error',
 
@@ -46,9 +49,6 @@ module.exports = {
 
     // No side effects in type imports
     '@typescript-eslint/no-import-type-side-effects': 'error',
-
-    // Allow use of 'any' type
-    '@typescript-eslint/no-explicit-any': 'off',
 
     // Unused variables rule
     '@typescript-eslint/no-unused-vars': ['error', {
