@@ -22,10 +22,12 @@ module.exports = {
 
     // Enforce import order
     'import/order': ['error', {
+      groups: [['builtin', 'external', 'internal']],
       'newlines-between': 'always',
       'alphabetize': {
         order: 'asc',
         orderImportKind: 'asc',
+        caseInsensitive: true
       },
     }],
 
@@ -40,6 +42,17 @@ module.exports = {
 
     // No async function without await
     'require-await': 'error',
+
+    // Enforce sorting of import members
+    'sort-imports': [
+      'error',
+      {
+        ignoreCase: true,
+        ignoreDeclarationSort: true,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single']
+      }
+    ],
 
     // Consistent type exports
     '@typescript-eslint/consistent-type-exports': ['error'],
