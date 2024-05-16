@@ -22,12 +22,10 @@ module.exports = {
 
     // Enforce import order
     'import/order': ['error', {
-      groups: [['builtin', 'external', 'internal']],
       'newlines-between': 'always',
       'alphabetize': {
         order: 'asc',
-        orderImportKind: 'asc',
-        caseInsensitive: true
+        caseInsensitive: true,
       },
     }],
 
