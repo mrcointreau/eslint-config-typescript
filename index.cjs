@@ -3,7 +3,6 @@ module.exports = {
     'standard',
     'plugin:import/recommended',
     'plugin:unicorn/recommended',
-    'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:@stylistic/disable-legacy',
     'plugin:@stylistic/recommended-extends',
   ],
@@ -48,25 +47,40 @@ module.exports = {
         ignoreCase: true,
         ignoreDeclarationSort: true,
         ignoreMemberSort: false,
-        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single']
-      }
+        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+      },
     ],
-
-    // Consistent type exports
-    '@typescript-eslint/consistent-type-exports': ['error'],
-
-    // Consistent type imports
-    '@typescript-eslint/consistent-type-imports': ['error'],
-
-    // No side effects in type imports
-    '@typescript-eslint/no-import-type-side-effects': 'error',
-
-    // Unused variables rule
-    '@typescript-eslint/no-unused-vars': ['error', {
-      args: 'all',
-      argsIgnorePattern: '^_',
-      destructuredArrayIgnorePattern: '^_',
-    }],
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended-type-checked',
+        'plugin:unicorn/recommended',
+      ],
+      parserOptions: {
+        tsconfigRootDir: __dirname, // for Zed compatibility
+        project: ['./tsconfig.eslint.json'],
+      },
+      rules: {
+        // Consistent type exports
+        '@typescript-eslint/consistent-type-exports': ['error'],
+
+        // Consistent type imports
+        '@typescript-eslint/consistent-type-imports': ['error'],
+
+        // No side effects in type imports
+        '@typescript-eslint/no-import-type-side-effects': 'error',
+
+        // Unused variables rule
+        '@typescript-eslint/no-unused-vars': ['error', {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+        }],
+      },
+    },
+  ],
   reportUnusedDisableDirectives: true,
 }
