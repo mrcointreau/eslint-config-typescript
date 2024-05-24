@@ -59,10 +59,6 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-type-checked',
         'plugin:unicorn/recommended',
       ],
-      parserOptions: {
-        tsconfigRootDir: __dirname, // for Zed compatibility
-        project: ['./tsconfig.eslint.json'],
-      },
       rules: {
         // Consistent type exports
         '@typescript-eslint/consistent-type-exports': ['error'],
